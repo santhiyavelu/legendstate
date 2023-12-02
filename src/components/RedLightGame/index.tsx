@@ -1,12 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import Button from '../Buttons/Button';
-import {COLORS} from '../../assets/constants';
-import {README} from '../../assets/instructions';
-import useTimer from '../../hooks/useTimer';
-import {ButtonVariant} from '../../types/button.enum';
-import useCountDown from '../../hooks/useCountDown';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { COLORS } from '../../assets/constants';
+import { README } from '../../assets/instructions';
 import useColor from '../../hooks/useColor';
+import useCountDown from '../../hooks/useCountDown';
+import useTimer from '../../hooks/useTimer';
+import { ButtonVariant } from '../../types/button.enum';
+import Button from '../Buttons/Button';
 
 const RedLightGame = () => {
   const {time, reset, pause, startTimer} = useTimer();
@@ -61,10 +61,8 @@ const RedLightGame = () => {
         <View>
           <Text>{README.RED_LIGHT_GREEN_LIGHT_INSTRUCTION}</Text>
         </View>
-        <Button>
-          <Text onPress={handlePlay} style={styles.buttonLabel}>
-            Start Game
-          </Text>
+        <Button onPress={handlePlay}>
+          <Text style={styles.buttonLabel}>Start Game</Text>
         </Button>
       </View>
       <View
