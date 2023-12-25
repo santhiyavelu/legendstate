@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import * as React from 'react';
 import {COLORS} from '../../assets/constants';
 
 interface BoxProps {
@@ -8,7 +8,7 @@ interface BoxProps {
 
 const Box: React.FC<BoxProps> = ({color = COLORS.GREEN}) => {
   return (
-    <View style={[styles.box, {backgroundColor: color}]}>
+    <View testID="box" style={[styles.box, {backgroundColor: color}]}>
       <Text style={styles.text}>ms</Text>
     </View>
   );
