@@ -8,8 +8,12 @@ interface LoadingProps {
 
 const Loading: React.FC<LoadingProps> = ({size = 'large', color = 'blue'}) => {
   return (
-    <View style={styles.centered}>
-      <ActivityIndicator size={size} color={color} />
+    <View testID="loading" style={styles.centered}>
+      <ActivityIndicator
+        testID="activity-indicator"
+        size={size}
+        color={color}
+      />
     </View>
   );
 };
