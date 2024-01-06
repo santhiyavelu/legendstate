@@ -67,3 +67,6 @@ yarn-error.log
 report/
 /report
 /report/
+
+.vscode/.react
+

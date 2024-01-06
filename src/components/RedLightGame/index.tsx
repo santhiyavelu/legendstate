@@ -53,21 +53,25 @@ const RedLightGame = () => {
     }
   }, [gameOver, pause, pauseCountDown, stopColor]);
   return (
-    <View style={styles.container}>
-      <View style={styles.sectionContainer}>
+    <View testID="container" style={styles.container}>
+      <View testID="start-game" style={styles.sectionContainer}>
         <View>
           <Text style={styles.header}>Red Light Green Light Game</Text>
         </View>
         <View>
           <Text>{README.RED_LIGHT_GREEN_LIGHT_INSTRUCTION}</Text>
         </View>
-        <Button>
-          <Text onPress={handlePlay} style={styles.buttonLabel}>
+        <Button aria-label="start game">
+          <Text
+            testID="btn-start"
+            onPress={handlePlay}
+            style={styles.buttonLabel}>
             Start Game
           </Text>
         </Button>
       </View>
       <View
+        testID="game"
         style={[
           styles.sectionContainer,
           {flexDirection: 'row', justifyContent: 'space-between'},
@@ -75,11 +79,16 @@ const RedLightGame = () => {
         <Text>Score: {score} ms</Text>
         {victory && <Text>Victory</Text>}
         {gameOver && !victory && <Text>Game Over</Text>}
-        <Text>{timeLeft} ms</Text>
+        <Text testID="time-left">{timeLeft} ms</Text>
       </View>
       {gameStart && !gameOver && (
-        <View style={[styles.sectionContainer]}>
-          <Button onPress={handleScore} variant={color} style={{padding: 0}}>
+        <View testID="main" style={[styles.sectionContainer]}>
+          <Button
+            aria-label="game button"
+            testID="game-btn"
+            onPress={handleScore}
+            variant={color}
+            style={{padding: 0}}>
             <View style={[styles.box]}>
               <Text testID={'trickyText'} style={styles.text}>
                 {color === ButtonVariant.SUCCESS
