@@ -9,6 +9,7 @@ import Home from './screens/Home';
 import HookForm from './screens/HookForm';
 import MoviesScreen from './screens/Movies';
 import ReactQuery from './screens/ReactQuery';
+import RedLightGame from './components/RedLightGame';
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
@@ -24,6 +25,7 @@ const App = () => {
             <Stack.Screen name="HookForm" component={HookForm} />
             <Stack.Screen name="MoviesScreen" component={MoviesScreen} />
             <Stack.Screen name="ReactQuery" component={ReactQuery} />
+            <Stack.Screen name="Game" component={RedLightGame} />
           </Stack.Navigator>
         </NavigationContainer>
       </TamaguiProvider>

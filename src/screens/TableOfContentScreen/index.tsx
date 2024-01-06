@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import {ScrollView, Text} from 'tamagui';
 import {useNavigation} from '@react-navigation/native';
+// import {RootStackParamList} from '../../navigations/types';
 
 const TableOfContentScreen = () => {
   const navigation = useNavigation();
@@ -10,6 +11,7 @@ const TableOfContentScreen = () => {
     {title: 'Hook Form', screen: 'HookForm'},
     {title: 'Movies', screen: 'MoviesScreen'},
     {title: 'React Query', screen: 'ReactQuery'},
+    {title: 'Red/Green Light Game', screen: 'Game'},
   ];
 
   const handleSectionPress = screen => {

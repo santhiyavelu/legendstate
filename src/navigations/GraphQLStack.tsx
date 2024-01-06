@@ -1,7 +1,9 @@
+import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import GraphQLScreen from '../screens/GraphQLScreen';
 import ChapterScreen from '../screens/ChapterScreen';
 import {RootStackParamList} from './types';
+import RedLightGame from '../components/RedLightGame';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -29,6 +31,7 @@ function GraphQLStack() {
           headerBackTitleVisible: false,
         })}
       />
+      <Stack.Screen name="Game" component={RedLightGame} />
     </Stack.Navigator>
   );
 }
