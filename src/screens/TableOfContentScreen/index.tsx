@@ -12,6 +12,7 @@ const TableOfContentScreen = () => {
     {title: 'Movies', screen: 'MoviesScreen'},
     {title: 'React Query', screen: 'ReactQuery'},
     {title: 'Red/Green Light Game', screen: 'Game'},
+    {title: 'Calculator', screen: 'Calculator'},
   ];
 
   const handleSectionPress = screen => {
