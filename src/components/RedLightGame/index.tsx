@@ -90,7 +90,7 @@ const RedLightGame = () => {
             variant={color}
             style={{padding: 0}}>
             <View style={[styles.box]}>
-              <Text style={styles.text}>
+              <Text testID={'trickyText'} style={styles.text}>
                 {color === ButtonVariant.SUCCESS
                   ? 'Click now!'
                   : 'Do not click!'}
