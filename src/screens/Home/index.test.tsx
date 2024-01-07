@@ -79,7 +79,7 @@ describe('Home', () => {
 });
 
 describe('Home/Score Card', () => {
-  it('should update Messi context api state', () => {
+  it('should update Messi legend state', () => {
     render(
       <TamaguiProvider config={appConfig}>
         <PlayerVoteProvider>
@@ -89,21 +89,22 @@ describe('Home/Score Card', () => {
     );
 
     // Act
-    const addVoteMess = screen.getAllByRole('button')[4];
+    const addVoteMess = screen.getByTestId('add-btn-1');
+
     fireEvent.press(addVoteMess);
 
     // Expect
-    expect(screen.getByTestId('Messi-sc-vote').props.children).toEqual(1);
+    expect(screen.getByTestId('score-Messi').props.children).toEqual(1);
 
     // Act
-    const decVoteMess = screen.getAllByRole('button')[5];
+    const decVoteMess = screen.getByTestId('dec-btn-1');
     fireEvent.press(decVoteMess);
 
     // Expect
-    expect(screen.getByTestId('Messi-sc-vote').props.children).toEqual(0);
+    expect(screen.getByTestId('score-Messi').props.children).toEqual(0);
   });
 
-  it('should update Ronaldo context api state', () => {
+  it('should update Rolando legend state', () => {
     render(
       <TamaguiProvider config={appConfig}>
         <PlayerVoteProvider>
@@ -113,17 +114,18 @@ describe('Home/Score Card', () => {
     );
 
     // Act
-    const addVoteRonaldo = screen.getAllByRole('button')[6];
-    fireEvent.press(addVoteRonaldo);
+    const addVoteRol = screen.getByTestId('add-btn-2');
+
+    fireEvent.press(addVoteRol);
 
     // Expect
-    expect(screen.getByTestId('Ronaldo-sc-vote').props.children).toEqual(1);
+    expect(screen.getByTestId('score-Rolando').props.children).toEqual(1);
 
     // Act
-    const decVoteRonaldo = screen.getAllByRole('button')[7];
-    fireEvent.press(decVoteRonaldo);
+    const decVoteRol = screen.getByTestId('dec-btn-2');
+    fireEvent.press(decVoteRol);
 
     // Expect
-    expect(screen.getByTestId('Ronaldo-sc-vote').props.children).toEqual(0);
+    expect(screen.getByTestId('score-Rolando').props.children).toEqual(0);
   });
 });
