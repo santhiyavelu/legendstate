@@ -1,26 +1,19 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {COLORS} from '../assets/constants';
-import {observer} from '@legendapp/state/react';
-import {usePlayerVote} from '../contexts/PlayerVoteContext';
 import {Player} from '../types/player';
 import HorizontalLine from './HorizontalLine';
-import AddVote from '../controller/AddVote';
+import {player$} from '../storage/score-card';
+import Button from './Buttons/Button';
+import {enableReactTracking} from '@legendapp/state/config/enableReactTracking';
+
+enableReactTracking({auto: true});
 
 interface ScoreCardProp {
   players: Player[];
 }
 
-const ScoreCard: React.FC<ScoreCardProp> = observer(({players}) => {
-  const {CVote, MVote} = usePlayerVote();
-
-  const RenderScore = observer(({p}: {p: Player}) => {
-    return (
-      <Text testID={p.name + '-sc-vote'} style={styles.cardTitle}>
-        {p.id === 1 ? MVote.get() : CVote.get()}
-      </Text>
-    );
-  });
+const ScoreCard: React.FC<ScoreCardProp> = () => {
   return (
     <View style={[styles.cardContainer]}>
       <View style={[styles.sectionHeader]}>
@@ -30,19 +23,37 @@ const ScoreCard: React.FC<ScoreCardProp> = observer(({players}) => {
       <HorizontalLine />
 
       <View style={styles.sectionContainer}>
-        {players.map(p => (
-          <View key={p.id} style={styles.sectionRow}>
-            <Text style={styles.cardTitle}>{p.name}</Text>
-            <AddVote pId={p.id} />
-            <RenderScore p={p} />
+        {player$.players.map(p => (
+          <View key={p.id.get()} style={styles.sectionRow}>
+            <Text style={styles.cardTitle}>{p.name.get()}</Text>
+            <Text testID={'score-' + p.name.get()}>{p.score.get()}</Text>
+            <View style={styles.group}>
+              <Button
+                testID={'add-btn-' + p.id.get()}
+                small
+                onPress={() => p.score.set(p.score.get() + 1)}>
+                <Text style={styles.buttonText}>Add</Text>
+              </Button>
+              <Button
+                testID={'dec-btn-' + p.id.get()}
+                small
+                onPress={() => p.score.set(p.score.get() - 1)}>
+                <Text style={styles.buttonText}>Dec</Text>
+              </Button>
+            </View>
           </View>
         ))}
       </View>
     </View>
   );
-});
+};
 
 const styles = StyleSheet.create({
+  group: {flexDirection: 'row', gap: 4, alignItems: 'center'},
+  buttonText: {
+    color: COLORS.LIGHT,
+    fontWeight: 'bold',
+  },
   cardContainer: {
     backgroundColor: COLORS.LIGHT,
     borderRadius: 8,
