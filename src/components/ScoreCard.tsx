@@ -31,13 +31,13 @@ const ScoreCard: React.FC<ScoreCardProp> = () => {
               <Button
                 testID={'add-btn-' + p.id.get()}
                 small
-                onPress={() => p.score.set(p.score.get() + 1)}>
+                onPress={() => p.score.set(currentScore => currentScore + 1)}>
                 <Text style={styles.buttonText}>Add</Text>
               </Button>
               <Button
                 testID={'dec-btn-' + p.id.get()}
                 small
-                onPress={() => p.score.set(p.score.get() - 1)}>
+                onPress={() => p.score.set(currentScore => currentScore - 1)}>
                 <Text style={styles.buttonText}>Dec</Text>
               </Button>
             </View>
