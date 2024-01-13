@@ -1,6 +1,5 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import TableOfContentScreen from '../screens/TableOfContentScreen';
 import {StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
@@ -9,26 +8,23 @@ import Home from '../screens/Home';
 
 const Tab = createBottomTabNavigator();
 
+// parameters can be improved by using objects
+const renderIcon = (
+  isFocused,
+  src = require('../assets/icons/home-96.png'),
+  settings = 'Icon Text',
+) => (
+  <View style={styles(isFocused).tabView}>
+    <Image source={src} resizeMode="contain" style={styles(isFocused).icon} />
+    <Text style={styles(isFocused).tabText}>{settings}</Text>
+  </View>
+);
+
 const CustomTabBarButton = ({children, onPress}) => (
   <TouchableOpacity
-    style={{
-      paddingVertical: 42,
-      top: -30,
-      justifyContent: 'center',
-      alignItems: 'center',
-      ...styles.shadow,
-    }}
+    style={[styles.customTabBarButton, styles.shadow]}
     onPress={onPress}>
-    <View
-      style={{
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-        // backgroundColor: '#1e90ff',
-        backgroundColor: '#32cd32',
-      }}>
-      {children}
-    </View>
+    <View style={styles.customTabBarView}>{children}</View>
   </TouchableOpacity>
 );
 
@@ -55,41 +51,16 @@ const Tabs = () => {
         name="LegentState"
         component={Home}
         options={{
-          tabBarIcon: ({focused}) => (
-            <View
-              style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
-              <Image
-                source={require('../assets/icons/home-96.png')}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? '#32cd32' : '#748c94',
-                }}
-              />
-              <Text
-                style={{color: focused ? '#32cd32' : '#748c94', fontSize: 12}}>
-                Home
-              </Text>
-            </View>
-          ),
+          tabBarIcon: ({focused}) =>
+            renderIcon(focused, require('../assets/icons/home-96.png'), 'Home'),
         }}
       />
       <Tab.Screen
         name="Table Of Content"
         component={TableOfContentScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <Image
-              source={require('../assets/icons/list-1000.png')}
-              resizeMode="contain"
-              style={{
-                width: 30,
-                height: 30,
-                tintColor: '#fff',
-              }}
-            />
-          ),
+          tabBarIcon: ({focused}) =>
+            renderIcon(focused, require('../assets/icons/list-1000.png')),
           tabBarButton: props => <CustomTabBarButton {...props} />,
         }}
       />
@@ -97,41 +68,53 @@ const Tabs = () => {
         name="Settings"
         component={SettingsScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <View
-              style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
-              <Image
-                source={require('../assets/icons/settings-1500.png')}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? '#32cd32' : '#748c94',
-                }}
-              />
-              <Text
-                style={{color: focused ? '#32cd32' : '#748c94', fontSize: 12}}>
-                SETTINGS
-              </Text>
-            </View>
-          ),
+          tabBarIcon: ({focused}) =>
+            renderIcon(
+              focused,
+              require('../assets/icons/settings-1500.png'),
+              'Settings',
+            ),
         }}
       />
     </Tab.Navigator>
   );
 };
 
-const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: '#7fffd4',
-    shadowOffset: {
-      width: 0,
-      height: 10,
+const styles = (isFocused = false) => {
+  return StyleSheet.create({
+    shadow: {
+      shadowColor: '#7fffd4',
+      shadowOffset: {
+        width: 0,
+        height: 10,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.5,
+      elevation: 5,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
-  },
-});
+    customTabBarButton: {
+      paddingVertical: 42,
+      top: -30,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    customTabBarView: {
+      width: 70,
+      height: 70,
+      borderRadius: 35,
+      backgroundColor: '#32cd32',
+    },
+    tabView: {alignItems: 'center', justifyContent: 'center', top: 10},
+    icon: {
+      width: 25,
+      height: 25,
+      tintColor: isFocused ? '#32cd32' : '#748c94',
+    },
+    tabText: {
+      color: isFocused ? '#32cd32' : '#748c94',
+      fontSize: 12,
+    },
+  });
+};
 
 export default Tabs;

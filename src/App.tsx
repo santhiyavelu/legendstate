@@ -21,7 +21,11 @@ const App = () => {
       <TamaguiProvider config={appConfig}>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Tabs">
-            <Stack.Screen name="Tabs" component={Tabs} />
+            <Stack.Screen
+              name="Tabs"
+              component={Tabs}
+              options={{headerShown: false}}
+            />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="HookForm" component={HookForm} />
             <Stack.Screen name="MoviesScreen" component={MoviesScreen} />
