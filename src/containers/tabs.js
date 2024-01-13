@@ -12,19 +12,24 @@ const Tab = createBottomTabNavigator();
 const renderIcon = (
   isFocused,
   src = require('../assets/icons/home-96.png'),
-  settings = 'Icon Text',
+  text = 'Icon Text',
+  style, // this can be improved. but i don't know yet. lol
 ) => (
   <View style={styles(isFocused).tabView}>
-    <Image source={src} resizeMode="contain" style={styles(isFocused).icon} />
-    <Text style={styles(isFocused).tabText}>{settings}</Text>
+    <Image
+      source={src}
+      resizeMode="contain"
+      style={[styles(isFocused).icon, style]}
+    />
+    <Text style={[styles(isFocused).tabText]}>{text}</Text>
   </View>
 );
 
-const CustomTabBarButton = ({children, onPress}) => (
+const CustomTabBarButton = ({children, onPress, focused}) => (
   <TouchableOpacity
-    style={[styles.customTabBarButton, styles.shadow]}
+    style={[styles(focused).customTabBarButton, styles(focused).shadow]}
     onPress={onPress}>
-    <View style={styles.customTabBarView}>{children}</View>
+    <View style={styles(focused).customTabBarView}>{children}</View>
   </TouchableOpacity>
 );
 
@@ -59,9 +64,11 @@ const Tabs = () => {
         name="Table Of Content"
         component={TableOfContentScreen}
         options={{
-          tabBarIcon: ({focused}) =>
-            renderIcon(focused, require('../assets/icons/list-1000.png')),
-          tabBarButton: props => <CustomTabBarButton {...props} />,
+          tabBarIcon: () =>
+            renderIcon(false, require('../assets/icons/list-1000.png'), '', {
+              tintColor: 'white',
+            }),
+          tabBarButton: props => CustomTabBarButton({...props}),
         }}
       />
       <Tab.Screen
