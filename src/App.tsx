@@ -11,6 +11,7 @@ import MoviesScreen from './screens/Movies';
 import ReactQuery from './screens/ReactQuery';
 import RedLightGame from './components/RedLightGame';
 import CalculatorView from './components/mvvm/view';
+import RadioCardGroup from './screens/RadioCards';
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
@@ -32,6 +33,7 @@ const App = () => {
             <Stack.Screen name="ReactQuery" component={ReactQuery} />
             <Stack.Screen name="Game" component={RedLightGame} />
             <Stack.Screen name="Calculator" component={CalculatorView} />
+            <Stack.Screen name="RadioCard" component={RadioCardGroup} />
           </Stack.Navigator>
         </NavigationContainer>
       </TamaguiProvider>

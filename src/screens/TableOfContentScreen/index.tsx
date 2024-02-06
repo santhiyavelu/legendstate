@@ -13,6 +13,7 @@ const TableOfContentScreen = () => {
     {title: 'React Query', screen: 'ReactQuery'},
     {title: 'Red/Green Light Game', screen: 'Game'},
     {title: 'Calculator', screen: 'Calculator'},
+    {title: 'RadioCard', screen: 'RadioCard'},
   ];
 
   const handleSectionPress = screen => {
