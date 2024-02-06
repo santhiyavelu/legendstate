@@ -14,6 +14,7 @@ export type RootStackParamList = {
   Chapter: ChapterScreenParams;
   GraphQL: undefined;
   Game: undefined;
+  RadioCard: undefined;
 
   // other screens and their params if any
 };
