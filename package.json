@@ -20,7 +20,6 @@
     "@react-navigation/native-stack": "^6.9.17",
     "@sentry/react-native": "^5.14.1",
     "@tamagui/config": "^1.79.1",
-    "@tamagui/core": "^1.79.1",
     "axios": "^1.6.2",
     "commitlint": "18.4.4",
     "graphql": "^16.8.1",
@@ -30,7 +29,8 @@
     "react-native-safe-area-context": "^4.7.4",
     "react-native-screens": "^3.27.0",
     "react-query": "^3.39.3",
-    "tamagui": "^1.79.1"
+    "tamagui": "^1.90.15",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
@@ -40,7 +40,7 @@
     "@babel/runtime": "^7.20.0",
     "@react-native/eslint-config": "^0.72.2",
     "@react-native/metro-config": "^0.72.11",
-    "@tamagui/babel-plugin": "^1.79.1",
+    "@tamagui/babel-plugin": "^1.90.15",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/react-native": "^12.4.0",
     "@testing-library/user-event": "^14.5.1",

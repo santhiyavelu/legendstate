@@ -5,6 +5,7 @@ import TableOfContentScreen from '../screens/TableOfContentScreen';
 import {StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import {View} from 'tamagui';
 import Home from '../screens/Home';
+import squad_mock from '../api/mock-response/squad_mock.json';
 
 const Tab = createBottomTabNavigator();
 
@@ -53,7 +54,7 @@ const Tabs = () => {
         ],
       })}>
       <Tab.Screen
-        name="LegentState"
+        name="LegendState"
         component={Home}
         options={{
           tabBarIcon: ({focused}) =>
@@ -74,6 +75,7 @@ const Tabs = () => {
       <Tab.Screen
         name="Settings"
         component={SettingsScreen}
+        initialParams={{data: squad_mock}}
         options={{
           tabBarIcon: ({focused}) =>
             renderIcon(

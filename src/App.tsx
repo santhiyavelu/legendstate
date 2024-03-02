@@ -1,7 +1,6 @@
 import React from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {TamaguiProvider} from 'tamagui';
-import appConfig from '../tamagui.config';
 import Tabs from './containers/tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -12,6 +11,7 @@ import ReactQuery from './screens/ReactQuery';
 import RedLightGame from './components/RedLightGame';
 import CalculatorView from './components/mvvm/view';
 import RadioCardGroup from './screens/RadioCards';
+import config from '../tamagui.config';
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <TamaguiProvider config={appConfig}>
+      <TamaguiProvider config={config}>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Tabs">
             <Stack.Screen
