@@ -17,10 +17,10 @@ const config = {
 };
 
 // 2. Enable Tamagui
-const {withTamagui} = require('@tamagui/metro-plugin');
-module.exports = withTamagui(config, {
-  components: ['tamagui'],
-  config: './tamagui.config.ts',
-  outputCSS: './tamagui-web.css',
-});
+// const {withTamagui} = require('@tamagui/metro-plugin');
+// module.exports = withTamagui(config, {
+//   components: ['tamagui'],
+//   config: './tamagui.config.ts',
+//   outputCSS: './tamagui-web.css',
+// });
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);
